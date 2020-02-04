@@ -39,9 +39,34 @@
 
 // An operation is atomic if it appears as if it occurred
 // instantaneously from the point of view of other threads.
-var uidCount = 0L
+//var uidCount = 0L
+//
+//def getUniqueId(): Long = {
+//  uidCount = uidCount + 1
+//  uidCount
+//}
+//
+//def startThread() = {
+//  val t = new Thread{
+//    override def run(): Unit ={
+//      val uids = for (i <- 0 until 10) yield getUniqueId()
+//      println(uids)
+//    }
+//  }
+//  t.start()
+//  t
+//}
+//startThread(); startThread()
 
-def getUniqueId(): Long = {
+// The synchronized block
+
+// TThe synchronized block is used to achieve atomicity.
+// Code block after a synchronized call on an object x
+// is never executed by two threads at the same time.
+
+val x = new AnyRef {}
+var uidCount = 0L
+def getUniqueId(): Long = x.synchronized {
   uidCount = uidCount + 1
   uidCount
 }
@@ -58,12 +83,8 @@ def startThread() = {
 }
 startThread(); startThread()
 
-
-
-
-
-
-
+// Using the same code from above with the synchronized
+// bite ensures the output will not be duplicated
 
 
 
