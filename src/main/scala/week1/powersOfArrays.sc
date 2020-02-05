@@ -43,4 +43,3 @@ def segmentRec(a: Array[Int], p: Double, s: Int, t: Int) = {
 
 
 
-
